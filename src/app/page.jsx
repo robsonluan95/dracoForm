@@ -7,13 +7,16 @@ import draco from './draco.png'
 import { IoMdLogIn } from "react-icons/io";
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-
-
+import WhatsAppButton from './components/whats';
+import { IoLogoWhatsapp } from "react-icons/io5";
 export default function Home() {
   const [nome,setNome]=useState('')
   const [idade,setIdade]=useState('')
   const [numero,setNumero]=useState('')
   const [instagram,setInstagram]=useState('')
+  const phoneNumber = '5587999611853'; // Exemplo: +55 11 99999-9999
+  const message = 'Olá, gostaria de mais informações!'; // Mensagem pré-definida
+
 
   async function handleRegister() {
     if (nome==='' || numero===''||instagram===''){
@@ -38,10 +41,12 @@ export default function Home() {
       console.log(e)
     }
     
-
-    
   } 
   
+  function handleWhats(){
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url,'_blank')
+  }
 
 
   return (
@@ -60,8 +65,13 @@ export default function Home() {
       <button onClick={handleRegister} className='bg-yellow-500 font-semibold text-black rounded p-3 my-1'>
         Cadastrar
       </button>
+      
     </div>
-
+    <div onClick={handleWhats} className='flex justify-center items-center space-x-2'>
+      <a>Chama no Whats!</a>
+      <IoLogoWhatsapp color='#34D399' size={50}/>
+    </div>
+    
     <Link
       className="flex text-center text-gray-500 gap-1 hover:underline hover:underline-offset-4"
       href="/login"
