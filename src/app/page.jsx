@@ -17,7 +17,7 @@ export default function Home() {
 
   async function handleRegister() {
     if (nome==='' || numero===''||instagram===''){
-      alert('Preencha todos os campos')
+      toast.error('Preencha todos os campos')
       return
     }
     const userData ={

@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useEffect,useState } from 'react';
-import { collection,getDocs } from 'firebase/firestore';
+import { collection,getDocs,deleteDoc,doc } from 'firebase/firestore';
 import { db } from '@/firebaseConnect';
 import { IoMdLogIn } from "react-icons/io";
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { IoReturnDownBackOutline } from "react-icons/io5";
+import { FaTrashAlt } from "react-icons/fa";
 
 
 import draco from '../draco.png'
@@ -34,6 +35,17 @@ function handleLogout(){
   setLogin(false)
   toast.info("Logout realizado com sucesso.");
 }
+async function handleDelete(id){
+  alert(id)
+  try{
+    const docRef=doc(db,'users',id)
+    await deleteDoc(docRef)
+    toast.success("Usuário deletado com sucesso.");
+  }catch(err){
+    console.log(err)
+    toast.error("Error ao deletar usuário")
+  }
+}
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -51,7 +63,7 @@ function handleLogout(){
     };
 
     fetchUsers();
-  }, []);
+  }, [users]);
 
   if (login===true){
     return(
@@ -61,8 +73,11 @@ function handleLogout(){
           {users.map((user) => (
             <li key={user.id} className="p-2 bg-zinc-800 rounded shadow">
               <h2 className="font-semibold">{user.nome}</h2>
+              <p >{user.idade}</p>
               <p>Número: {user.numero}</p>
               <p>Instagram: {user.instagram}</p>
+              <FaTrashAlt color='red' onClick={() => handleDelete(user.id)} />
+
             </li>
           ))}
         </ul>
@@ -75,7 +90,7 @@ function handleLogout(){
       <div className="p-4 bg-zinc-900 min-h-screen flex justify-center flex-col items-center">
         <Image src={draco} width={200}   />
         <h1 className="text-2xl font-bold mb-4">Faça o login</h1>
-        <div className="space-y-2 flex flex-col min-w-96">
+        <div className="space-y-2 flex flex-col min-w-96 ">
           <input
             placeholder='Digite o usuario'
             type='text'
