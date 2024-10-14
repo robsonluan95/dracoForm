@@ -10,7 +10,7 @@ import { IoReturnDownBackOutline } from "react-icons/io5";
 import { FaTrashAlt } from "react-icons/fa";
 
 
-import draco from '../draco.png'
+import draco from '../dracocom.png'
 import Link from 'next/link';
 
 const Home = () => {
@@ -88,7 +88,7 @@ async function handleDelete(id){
   }else{
     return(
       <div className="p-4 bg-zinc-900 min-h-screen flex justify-center flex-col items-center">
-        <Image src={draco} width={200}   />
+        <Image src={draco} width={350}  quality={80} />
         <h1 className="text-2xl font-bold mb-4">Faça o login</h1>
         <div className="space-y-2 flex flex-col min-w-96 ">
           <input

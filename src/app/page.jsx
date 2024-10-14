@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {db} from '../firebaseConnect'
 import {doc,setDoc,collection} from 'firebase/firestore'
 import Image from 'next/image';
-import draco from './draco.png'
+import draco from './dracocom.png'
 import { IoMdLogIn } from "react-icons/io";
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -15,7 +15,7 @@ export default function Home() {
   const [numero,setNumero]=useState('')
   const [instagram,setInstagram]=useState('')
   const phoneNumber = '5587999611853'; // Exemplo: +55 11 99999-9999
-  const message = 'Olá, gostaria de mais informações!'; // Mensagem pré-definida
+  const message = 'Faala Monstrinhoo! 😎👊🏼 Gostaria de dar um UP no Shape com seus produtos'; // Mensagem pré-definida
 
 
   async function handleRegister() {
@@ -53,8 +53,7 @@ export default function Home() {
     <div className="grid bg-zinc-900 grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
   <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
     <div className='w-full max-w-md flex flex-col items-center justify-center mx-4'>
-      <Image src={draco} width={200} />
-      <h1 className="text-3xl sm:text-4xl font-bold mt-3 text-white">Draco Suplemento</h1>
+      <Image className='b' src={draco} width={320} quality={80} />
     </div>
     
     <div className='flex flex-col min-h-80 justify-around w-full max-w-mdmx-4'>
@@ -67,7 +66,7 @@ export default function Home() {
       </button>
       
     </div>
-    <div onClick={handleWhats} className='flex justify-center items-center space-x-2'>
+    <div onClick={handleWhats} className='flex justify-center items-center space-x-2 rounded-sm'>
       <a>Chama no Whats!</a>
       <IoLogoWhatsapp color='#34D399' size={50}/>
     </div>
@@ -88,8 +87,7 @@ export default function Home() {
       href="https://www.instagram.com/robsonluan95/"
       target="_blank"
       rel="noopener noreferrer"
-    >
-      @RobsonLuan95
+    >@RobsonLuan95
     </a>
   </footer>
 </div>

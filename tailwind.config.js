@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       colors:{
         'custom-yellow': '#F3B118',
+        'custom-whats': '#488863',
       }
     },
   },
