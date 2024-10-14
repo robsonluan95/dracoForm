@@ -1,3 +1,4 @@
+/* src/styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,11 +6,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --dracoYellow:#f3b118
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #161616;
     --foreground: #ededed;
   }
 }
