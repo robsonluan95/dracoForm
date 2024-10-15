@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { IoReturnDownBackOutline } from "react-icons/io5";
 import { FaTrashAlt } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io5";
-
+import { FaInstagram } from "react-icons/fa6";
 import draco from '../dracocom.png'
 import Link from 'next/link';
 
@@ -39,6 +39,11 @@ function handleWhats(numero){
   const url = `https://wa.me/55${numero}?text=${encodeURIComponent('Faala Monstrinhoo! 😎👊🏼 Gostaria de dar um UP no Shape com os melhores produtos, e com os melhores preços?')}`;
   window.open(url,'_blank')
 }
+function handleInstagram(instagram){
+  const url = `https://www.instagram.com/${instagram}`;
+  window.open(url,'_blank')
+}
+
 
 async function handleDelete(id){
   alert(id)
@@ -84,6 +89,7 @@ async function handleDelete(id){
               <div className='flex justify-around mt-2'>
                 <FaTrashAlt color='red' size={30} onClick={() => handleDelete(user.id)} />
                 <IoLogoWhatsapp color='#34D399' size={30} onClick={()=>handleWhats(user.numero)} />
+                <FaInstagram color='#ff06b9' size={30} onClick={()=>handleInstagram(user.instagram)}  />
               </div>
               
             </li>
