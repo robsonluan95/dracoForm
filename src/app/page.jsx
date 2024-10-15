@@ -54,6 +54,8 @@ export default function Home() {
   <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
     <div className='w-full max-w-md flex flex-col items-center justify-center mx-4'>
       <Image className='b' src={draco} width={320} quality={80} />
+      <h1 className="text-5xl font-bold text-white">Draco</h1>
+      <h3 className="text-3xl font-bold text-custom-yellow">Suplementos</h3>
     </div>
     
     <div className='flex flex-col min-h-80 justify-around w-full max-w-mdmx-4'>
