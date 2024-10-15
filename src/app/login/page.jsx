@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useEffect,useState } from 'react';
 import { collection,getDocs,deleteDoc,doc } from 'firebase/firestore';
 import { db } from '@/firebaseConnect';
@@ -19,7 +18,29 @@ const Home = () => {
   const [password,setPassword]=useState('')
   const [users, setUsers] = useState([]);
 
+  const fetchUsers = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, 'users'));
+      const usersData = [];
+      
+      querySnapshot.forEach((doc) => {
+        usersData.push({ id: doc.id, ...doc.data() });
+      });
 
+      setUsers(usersData); // Atualiza o estado com os dados dos usuários
+    } catch (e) {
+      toast.error("Error ao buscar usuários")
+      console.error('Erro ao buscar usuários: ', e);
+    }
+  };
+
+  useEffect(() => {
+    if (login){
+      fetchUsers();
+    }
+    
+  }, [login]);
+  
   function handleLogin(){
     if (usuario==='admin'&& password==='784951623'){
       toast.success("Login")
@@ -35,12 +56,17 @@ function handleLogout(){
   setLogin(false)
   toast.info("Logout realizado com sucesso.");
 }
+
 function handleWhats(numero){
   const url = `https://wa.me/55${numero}?text=${encodeURIComponent('Faala Monstrinhoo! 😎👊🏼 Gostaria de dar um UP no Shape com os melhores produtos, e com os melhores preços?')}`;
   window.open(url,'_blank')
 }
 function handleInstagram(instagram){
-  const url = `https://www.instagram.com/${instagram}`;
+  let instaUrl=instagram
+  if (instagram.charAt(0)==='@'){
+    instaUrl=instagram.slice(1)
+  }
+  const url = `https://www.instagram.com/${instaUrl}`;
   window.open(url,'_blank')
 }
 
@@ -51,29 +77,15 @@ async function handleDelete(id){
     const docRef=doc(db,'users',id)
     await deleteDoc(docRef)
     toast.success("Usuário deletado com sucesso.");
+    await fetchUsers()
   }catch(err){
     console.log(err)
     toast.error("Error ao deletar usuário")
   }
 }
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'users'));
-        const usersData = [];
-        
-        querySnapshot.forEach((doc) => {
-          usersData.push({ id: doc.id, ...doc.data() });
-        });
 
-        setUsers(usersData); // Atualiza o estado com os dados dos usuários
-      } catch (e) {
-        console.error('Erro ao buscar usuários: ', e);
-      }
-    };
 
-    fetchUsers();
-  }, [users]);
+ 
 
   if (login===true){
     return(
@@ -83,7 +95,7 @@ async function handleDelete(id){
           {users.map((user) => (
             <li key={user.id} className="p-2 bg-zinc-800 rounded shadow">
               <h2 className="font-semibold">{user.nome}</h2>
-              <p >{user.idade}</p>
+              <p>Idade: {user.idade}</p>
               <p>Número: {user.numero}</p>
               <p>Instagram: {user.instagram}</p>
               <div className='flex justify-around mt-2'>
