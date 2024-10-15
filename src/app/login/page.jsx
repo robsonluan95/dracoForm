@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { IoReturnDownBackOutline } from "react-icons/io5";
 import { FaTrashAlt } from "react-icons/fa";
-
+import { IoLogoWhatsapp } from "react-icons/io5";
 
 import draco from '../dracocom.png'
 import Link from 'next/link';
@@ -35,6 +35,11 @@ function handleLogout(){
   setLogin(false)
   toast.info("Logout realizado com sucesso.");
 }
+function handleWhats(numero){
+  const url = `https://wa.me/55${numero}?text=${encodeURIComponent('Faala Monstrinhoo! 😎👊🏼 Gostaria de dar um UP no Shape com os melhores produtos, e com os melhores preços?')}`;
+  window.open(url,'_blank')
+}
+
 async function handleDelete(id){
   alert(id)
   try{
@@ -76,21 +81,24 @@ async function handleDelete(id){
               <p >{user.idade}</p>
               <p>Número: {user.numero}</p>
               <p>Instagram: {user.instagram}</p>
-              <FaTrashAlt color='red' onClick={() => handleDelete(user.id)} />
-
+              <div className='flex justify-around mt-2'>
+                <FaTrashAlt color='red' size={30} onClick={() => handleDelete(user.id)} />
+                <IoLogoWhatsapp color='#34D399' size={30} onClick={()=>handleWhats(user.numero)} />
+              </div>
+              
             </li>
           ))}
         </ul>
-        <IoMdLogIn size={25} color='red' onClick={handleLogout}/>
+        <IoMdLogIn className='mt-3' size={25} color='red' onClick={handleLogout}/>
         
       </div>
     )
   }else{
     return(
       <div className="p-4 bg-zinc-900 min-h-screen flex justify-center flex-col items-center">
-        <Image src={draco} width={350}  quality={80} />
+        <Image src={draco} width={200}  quality={40} />
         <h1 className="text-2xl font-bold mb-4">Faça o login</h1>
-        <div className="space-y-2 flex flex-col min-w-96 ">
+        <div className="space-y-2 flex flex-col min-w-72 w-full max-w-screen-sm">
           <input
             placeholder='Digite o usuario'
             type='text'

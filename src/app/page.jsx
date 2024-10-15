@@ -51,35 +51,35 @@ export default function Home() {
 
   return (
     <div className="grid bg-zinc-900 grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-  <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-    <div className='w-full max-w-md flex flex-col items-center justify-center mx-4'>
-      <Image className='b' src={draco} width={320} quality={80} />
-      <h1 className="text-5xl font-bold text-white">Draco</h1>
-      <h3 className="text-3xl font-bold text-custom-yellow">Suplementos</h3>
-    </div>
+    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-center w-11/12 m-0">
+      <div className='w-full max-w-md flex flex-col items-center justify-center mx-4 '>
+        <Image  src={draco} width={200} quality={60} />
+        <h1 className="text-5xl font-bold text-white">Draco</h1>
+        <h3 className="text-3xl font-bold text-custom-yellow">Suplementos</h3>
+      </div>
     
-    <div className='flex flex-col min-h-80 justify-around w-full max-w-mdmx-4'>
-      <input placeholder='Seu nome' type='text' value={nome} className='p-3 rounded text-black' onChange={(e) => setNome(e.target.value)} />
-      <input placeholder='Sua idade' type='text' value={idade} className='p-3 rounded text-black' onChange={(e) => setIdade(e.target.value)} />
-      <input placeholder='Seu número' type='text' value={numero} className='p-3 rounded text-black' onChange={(e) => setNumero(e.target.value)} />
-      <input placeholder='Seu Instagram' type='text' value={instagram} className='p-3 rounded text-black' onChange={(e) => setInstagram(e.target.value)} />
-      <button onClick={handleRegister} className='bg-yellow-500 font-semibold text-black rounded p-3 my-1'>
-        Cadastrar
-      </button>
-      
-    </div>
-    <div onClick={handleWhats} className='flex justify-center items-center space-x-2 rounded-sm'>
-      <a>Chama no Whats!</a>
-      <IoLogoWhatsapp color='#34D399' size={50}/>
-    </div>
+      <div className='flex flex-col min-h-80 justify-around max-w-mdmx-4 w-full'>
+        <input placeholder='Seu nome' type='text' value={nome} className='p-3 rounded text-black' onChange={(e) => setNome(e.target.value)} />
+        <input placeholder='Sua idade' type='text' value={idade} className='p-3 rounded text-black' onChange={(e) => setIdade(e.target.value)} />
+        <input placeholder='Seu número' type='text' value={numero} className='p-3 rounded text-black' onChange={(e) => setNumero(e.target.value)} />
+        <input placeholder='Seu Instagram' type='text' value={instagram} className='p-3 rounded text-black' onChange={(e) => setInstagram(e.target.value)} />
+        <button onClick={handleRegister} className='bg-yellow-500 font-semibold text-black rounded p-3 my-1'>
+          Cadastrar
+        </button>
+        
+      </div>
+      <div onClick={handleWhats} className='flex justify-center items-center space-x-2 rounded-sm'>
+        <a>Chama no Whats!</a>
+        <IoLogoWhatsapp color='#34D399' size={50}/>
+      </div>
     
-    <Link
-      className="flex text-center text-gray-500 gap-1 hover:underline hover:underline-offset-4"
-      href="/login"
-      rel="noopener noreferrer"
-    >
-      <IoMdLogIn size={25} color='#F3B118' />
-    </Link>
+      <Link
+        className="flex text-center text-gray-500 gap-1 hover:underline hover:underline-offset-4"
+        href="/login"
+        rel="noopener noreferrer"
+      >
+        <IoMdLogIn size={25} color='#F3B118' />
+      </Link>
   </main>
 
   <footer className="row-start-3 flex gap-3 flex-wrap items-center justify-center">
